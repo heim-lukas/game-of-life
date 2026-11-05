@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "game-of-life"
+dynamic = ["version"]
+description = "Conway's Game of Life in the terminal"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "windows-curses; sys_platform == 'win32'",
+    "tomli; python_version < '3.11'",
+]
+
+[project.scripts]
+game-of-life = "game_of_life.__main__:main"
+
+[tool.setuptools]
+packages = ["game_of_life"]
+
+[tool.setuptools.package-data]
+game_of_life = ["*.toml"]
+
+[tool.setuptools.dynamic]
+version = {attr = "game_of_life.__version__"}
